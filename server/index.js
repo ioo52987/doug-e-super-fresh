@@ -3,7 +3,6 @@ import mysql from "mysql2";
 import express from "express";
 import bodyParser from "body-parser";
 
-
 const app = express();
 
 // support parsing of application/json type post data
@@ -40,8 +39,16 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 // endpoints
+
+app.get("/getFishingSites", (req, res) => {
+  let sqlGet = "SELECT siteName FROM fishingSites WHERE showInDropdown = 1";
+  db.query(sqlGet, (error, result) => {
+    if (error) return res.json(error);
+    return res.json(result);
+  });
+});
+
 app.get("/getFishingTrips", (req, res) => {
   let sqlGet =
     "SELECT pk, date, siteName, descrb, rating, url, fishCaught, tideType FROM fishingTrips";
@@ -50,7 +57,6 @@ app.get("/getFishingTrips", (req, res) => {
     return res.json(result);
   });
 });
-
 
 app.post("/addFishingSite", (req, res) => {
   let data = req.body;
