@@ -40,27 +40,7 @@ app.use(function (req, res, next) {
 });
 
 // endpoints
-app.post("/fishingTrips", (req, res) => {
-  let data = req.body;
-  let sqlPost = `INSERT INTO fishingTrips (date,siteName,descrb,rating,url,fishCaught,tideType)  
-      VALUES ("${data.date}", "${data.siteName}", "${data.descrb}","${data.rating}","${data.url}", "${data.fishCaught}", "${data.tideType}")`;
-  db.query(sqlPost, (error, result) => {
-    if (error) return res.json(error);
-    res.send({
-      message: "New fishing trip added.",
-    });
-  });
-});
-
-app.get("/getFishingSites", (req, res) => {
-  let sqlGet = "SELECT siteName FROM fishingSites WHERE showInDropdown = 1";
-  db.query(sqlGet, (error, result) => {
-    if (error) return res.json(error);
-    return res.json(result);
-  });
-});
-
-app.get("/getFishingTrips", (req, res) => {
+app.get("/fishingTrips", (req, res) => {
   let sqlGet =
     "SELECT pk, date, siteName, descrb, rating, url, fishCaught, tideType FROM fishingTrips";
   db.query(sqlGet, (error, result) => {
@@ -69,7 +49,28 @@ app.get("/getFishingTrips", (req, res) => {
   });
 });
 
-app.post("/addFishingSite", (req, res) => {
+app.post("/fishingTrips", (req, res) => {
+  let data = req.body;
+  let sqlPost = `INSERT INTO fishingTrips (date,siteName,descrb,rating,url,fishCaught,tideType)  
+        VALUES ("${data.date}", "${data.siteName}", "${data.descrb}","${data.rating}","${data.url}", "${data.fishCaught}", "${data.tideType}")`;
+  db.query(sqlPost, (error, result) => {
+    if (error) return res.json(error);
+    res.send({
+      message: "New fishing trip added.",
+    });
+  });
+});
+
+app.get("/fishingSites", (req, res) => {
+  let sqlGet =
+    "SELECT siteName, siteType, longitude, latitude, siteURL, descrb, showInDropdown FROM fishingSites WHERE showInDropdown = 1";
+  db.query(sqlGet, (error, result) => {
+    if (error) return res.json(error);
+    return res.json(result);
+  });
+});
+
+app.post("/fishingSites", (req, res) => {
   let data = req.body;
   let sqlPost = `INSERT INTO fishingSites (siteName,siteType,longitude,latitude,siteURL,descrb,showInDropdown) 
     VALUES ("${data.siteName}", "${data.siteType}", "${data.longitude}","${data.latitude}","${data.siteURL}", "${data.desrb}", "${data.showInD}")`;
