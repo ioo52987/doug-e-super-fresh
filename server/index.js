@@ -40,41 +40,17 @@ app.use(function (req, res, next) {
   next();
 });
 
-/*
+
 // endpoints
-app.get("/states", (req, res) => {
-  let sqlGet = "SELECT abbr FROM states";
-  db.query(sqlGet, (error, result) => {
-    if (error) return res.json(error);
-    return res.json(result);
-  });
-});
-
-app.get("/accreditations", (req, res) => {
-  let sqlGet = "SELECT accreditation FROM accreditation";
-  db.query(sqlGet, (error, result) => {
-    if (error) return res.json(error);
-    return res.json(result);
-  });
-});
-
-app.get("/panels", (req, res) => {
-  let sqlGet = "SELECT panel, label, color FROM panels";
-  db.query(sqlGet, (error, result) => {
-    if (error) return res.json(error);
-    return res.json(result);
-  });
-});
-
-app.get("/registeredLabs", (req, res) => {
+app.get("/getFishingTrips", (req, res) => {
   let sqlGet =
-    "SELECT id, lab_name, street_address, city, zipcode, accreditation, clia_number, panels, website, email, phone_no FROM registeredLabs";
+    "SELECT pk, date, siteName, descrb, rating, url, fishCaught, tideType FROM fishingTrips";
   db.query(sqlGet, (error, result) => {
     if (error) return res.json(error);
     return res.json(result);
   });
 });
-*/
+
 
 app.post("/addFishingSite", (req, res) => {
   let data = req.body;
