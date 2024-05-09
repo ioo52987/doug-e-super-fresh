@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-import FormErrors from "./FormErrors.js";
-import RatingButton from "./RatingButton.js";
+import FormErrors from "./Equipment/FormErrors.js";
+import RatingButton from "./Equipment/RatingButton.js";
 import Select from "react-select";
 
 function AddFishingTrip() {

@@ -27,13 +27,11 @@ export const columnDef = [
   },
   {
     accessorKey: "url",
-    header: "Photos",
+    header: "Pics",
     cell: ({ getValue }) => (
-      <div className="">
-        <a href={getValue()} target="_blank">
-          <CameraIcon className="h-6 w-6" />
-        </a>
-      </div>
+      <a href={getValue()} target="_blank" rel="noreferrer" className="flex justify-center">
+        <CameraIcon className="h-6 w-6" />
+      </a>
     ),
   },
   {

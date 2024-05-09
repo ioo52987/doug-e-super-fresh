@@ -11,7 +11,6 @@ import {
 import { columnDef } from "./columns.js";
 import "./table.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { ArrowsUpDownIcon, CameraIcon } from "@heroicons/react/24/solid";
 
 function PreviousTrips() {
   // GET previousTrips
@@ -82,7 +81,7 @@ function PreviousTrips() {
                           key={columnEl.id}
                           colSpan={columnEl.colSpan}
                           onClick={columnEl.column.getToggleSortingHandler()}
-                          className="pt-3 pb-3 bg-orange-500 text-white"
+                          className="pt-3 pb-3 pr-3 bg-orange-500 text-white"
                         >
                           <div className="flex flex-row items-center justify-center">
                             <span className="ml-2">
@@ -90,15 +89,6 @@ function PreviousTrips() {
                                 columnEl.column.columnDef.header,
                                 columnEl.getContext()
                               )}
-                            </span>
-                            {
-                              {
-                                asc: "",
-                                desc: "",
-                              }[columnEl.column.getIsSorted() ?? null]
-                            }
-                            <span className="ml-2">
-                              <ArrowsUpDownIcon className="h-6 w-6" />
                             </span>
                           </div>
                         </th>

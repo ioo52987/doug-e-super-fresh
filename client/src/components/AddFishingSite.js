@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FormErrors from "./FormErrors.js";
+import FormErrors from "./Equipment/FormErrors.js";
 import Select from "react-select";
 
 function AddFishingSite() {

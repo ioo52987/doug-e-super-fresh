@@ -2,10 +2,10 @@ import React from "react";
 import { useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/header.js";
-import SidebarDrawer from "./components/sidebarDrawer.js";
-import Welcome from "./components/welcome.js";
-import Map from "./components/MapDos/MapDos.js"
+import Header from "./components/Equipment/header.js";
+import SidebarDrawer from "./components/SidebarDrawer/sidebarDrawer.js";
+import Welcome from "./components/WelcomePage.js";
+import Map from "./components/Map/Map.js"
 import AboutThisSite from "./components/AboutThisSite.js";
 import AddNewSite from "./components/AddFishingSite.js";
 import AddNewTrip from "./components/AddFishingTrip.js"
