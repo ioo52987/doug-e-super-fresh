@@ -18,7 +18,7 @@ function PreviousTrips() {
   useEffect(() => {
     async function fetchMyAPI() {
       let response = await fetch(
-        `${process.env.REACT_APP_API_SERVER_URL}/getFishingTrips`
+        `${process.env.REACT_APP_API_SERVER_URL}/fishingTrips`
       );
       response = await response.json();
       setPreviousTrips(response);

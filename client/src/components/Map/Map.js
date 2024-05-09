@@ -1,10 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import axios from "axios";
 import marker from "@mapbox/maki/icons/marker.svg";
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiZmlzaG5uMjMiLCJhIjoiY2xpb3o4YjlhMHFjYjNkcDJiejE2aHJzYiJ9.wUWSN1ZUhOzAMpGArWidUQ";
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 export default function Map() {
   // check if on mobile or computer device --> https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
@@ -27,94 +25,81 @@ export default function Map() {
     lat = 36.9744482;
   }
 
-  // set states (includes axios response data)
+  // states
   const [fishingSiteData, setFishingSiteData] = useState([]); // all site data returned from axios
   const [fishingTripData, setFishingTripData] = useState([]); // all trip data returned from axios
 
-  // GET latest fishing-site data
-  let [offset1, setOffset1] = useState("");
+  // GET fishingSites
   useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_FISHING_SITES_AIRTABLE)
-      .then((response) => {
-        let data = response.data.records;
-        setFishingSiteData((fishingSiteData) => [...fishingSiteData, ...data]);
-        if (response.data.offset) {
-          setOffset1(response.data.offset);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [offset1]);
+    async function fetchMyAPI() {
+      let response = await fetch(
+        `${process.env.REACT_APP_API_SERVER_URL}/fishingSites`
+      );
+      response = await response.json();
+      setFishingSiteData(response);
+    }
+    fetchMyAPI();
+  }, []);
 
-  // GET latest fishing-trip data
-  let [offset2, setOffset2] = useState("");
+  // GET fishingTrips
   useEffect(() => {
-    axios
-      .get(
-        `/` +
-          process.env.REACT_APP_FISHING_TRIPS_AIRTABLE +
-          `?fields%5B%5D=fishCaught&fields%5B%5D=date&fields%5B%5D=siteName&fields%5B%5D=rating`
-      )
-      .then((response) => {
-        let data = response.data.records;
-        setFishingTripData((fishingTripData) => [...fishingTripData, ...data]);
-        if (response.data.offset) {
-          setOffset2(response.data.offset);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [offset2]);
+    async function fetchMyAPI() {
+      let response = await fetch(
+        `${process.env.REACT_APP_API_SERVER_URL}/fishingTrips`
+      );
+      response = await response.json();
+      setFishingTripData(response);
+    }
+    fetchMyAPI();
+  }, []);
 
+  // map load
   useEffect(() => {
-   
-    // calculate numTrips and overallRating per fishing-site ---------------------------------------------
+    // initialize popup objects
     let popupData = [];
-    // initializing structure
     for (let i = 0; i < fishingSiteData.length; i++) {
       let obj = {
-        siteName: fishingSiteData[i].fields.siteName,
+        siteName: fishingSiteData[i].siteName,
         ratingSum: 0,
         numTrips: 0,
         overallRating: 0,
       };
       popupData.push(obj);
     }
-    // sum ratings and number of trips per fishing-site
+
+    // sum ratings and trips per fishingSite
     for (let i = 0; i < fishingTripData.length; i++) {
       popupData.forEach((item) => {
-        if (item.siteName === fishingTripData[i].fields.siteName) {
-          item.ratingSum = item.ratingSum + fishingTripData[i].fields.rating;
+        if (item.siteName === fishingTripData[i].siteName) {
+          item.ratingSum = item.ratingSum + fishingTripData[i].rating;
           item.numTrips++;
         }
       });
     }
+
     // calculate overall rating for each site
     popupData.forEach((item) => {
       item.overallRating = Number(item.ratingSum / item.numTrips).toFixed(2);
     });
 
-    // create geoJSON data structure for fishing-sites layer ---------------------------------------------
+    // create geoJSON data structure for fishing-sites layer
     let siteMapProperties = [];
     // make popup for each fishing-site
     for (let i = 0; i < fishingSiteData.length; i++) {
       popupData.forEach((item) => {
-        if (item.siteName === fishingSiteData[i].fields.siteName) {
+        if (item.siteName === fishingSiteData[i].siteName) {
           siteMapProperties.push({
             type: "Feature",
             properties: {
-              siteName: fishingSiteData[i].fields.siteName,
+              siteName: fishingSiteData[i].siteName,
               overallRating: item.overallRating,
-              description: fishingSiteData[i].fields.description,
+              description: fishingSiteData[i].descrb,
             },
             geometry: {
               type: "Point",
               coordinates: [
-                fishingSiteData[i].fields.longitude,
-                fishingSiteData[i].fields.latitude,
+                fishingSiteData[i].longitude,
+                fishingSiteData[i].latitude,
               ],
             },
           });
@@ -124,8 +109,8 @@ export default function Map() {
 
     // custom icons
     let fsIcon = {
-        url: marker,
-      //url: "https://i.ibb.co/DfQyp9M/icons8-fish-100-1.png",
+      //url: marker,
+      url: "https://i.ibb.co/DfQyp9M/icons8-fish-100-1.png",
       id: "marker",
     };
 

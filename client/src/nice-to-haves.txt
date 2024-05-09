@@ -10,5 +10,11 @@
 
 
 -----------------------------------------------------------------------------------------------
-Mobile Design, Success and auto-refresh, Map Component, hooking up on Railway
+Mobile Design, 
+Success and auto-refresh, 
+Map Component, 
+overall consistent formatting (margins, padding, etc)
+hooking up on Railway
+pop-up styling
+overRating is lagging in useEffect (async await function?)
 -----------------------------------------------------------------------------------------------

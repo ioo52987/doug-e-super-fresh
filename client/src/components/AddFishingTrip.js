@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
 import FormErrors from "./Equipment/FormErrors.js";
 import RatingButton from "./Equipment/RatingButton.js";
 import Select from "react-select";
@@ -47,7 +46,7 @@ function AddFishingTrip() {
   useEffect(() => {
     async function fetchMyAPI() {
       let response = await fetch(
-        `${process.env.REACT_APP_API_SERVER_URL}/getFishingSites`
+        `${process.env.REACT_APP_API_SERVER_URL}/fishingSites`
       );
       response = await response.json();
       setFishingSiteData(response);
