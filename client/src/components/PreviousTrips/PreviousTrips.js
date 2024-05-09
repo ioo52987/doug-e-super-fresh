@@ -11,22 +11,28 @@ import {
 import { columnDef } from "./columns.js";
 import "./table.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { ArrowsUpDownIcon } from "@heroicons/react/24/solid";
-import axios from "axios";
+import { ArrowsUpDownIcon, CameraIcon } from "@heroicons/react/24/solid";
 
 function PreviousTrips() {
   // GET previousTrips
-  let [previousTrips, setPreviousTrips] = useState({});
+  let [previousTrips, setPreviousTrips] = useState([]);
+  useEffect(() => {
+    async function fetchMyAPI() {
+      let response = await fetch(
+        `${process.env.REACT_APP_API_SERVER_URL}/getFishingTrips`
+      );
+      response = await response.json();
+      setPreviousTrips(response);
+    }
 
-  // add async await
- 
+    fetchMyAPI();
+  }, []);
+
   const finalData = React.useMemo(() => previousTrips, [previousTrips]);
   const finalCol = React.useMemo(() => columnDef, []);
 
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
-
-  
 
   // table state - with bindings
   const tableInstance = useReactTable({
