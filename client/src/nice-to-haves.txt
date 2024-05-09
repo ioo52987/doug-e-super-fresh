@@ -17,4 +17,5 @@ overall consistent formatting (margins, padding, etc)
 hooking up on Railway
 pop-up styling
 overRating is lagging in useEffect (async await function?)
+icon package for README
 -----------------------------------------------------------------------------------------------
