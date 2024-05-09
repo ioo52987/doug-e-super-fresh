@@ -13,33 +13,13 @@ import "./table.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { ArrowsUpDownIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
-import airtableJson from 'airtable-json'
 
 function PreviousTrips() {
   // GET previousTrips
   let [previousTrips, setPreviousTrips] = useState({});
 
   // add async await
-  useEffect(() => {
-    axios
-      .get(
-        `/` + process.env.REACT_APP_FISHING_TRIPS_AIRTABLE + `?offset=${offset}`
-      )
-      .then((response) => {
-        let data = response.data.records;
-        setPreviousTrips((previousTrips) => [...previousTrips, ...data]);
-        if (response.data.offset) {
-          setOffset(response.data.offset);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [offset]);
-
-  for (let i = 0; i < previousTrips.length; i++) {
-    let obj = previousTrips[i].filtering.fields;
-  }
+ 
   const finalData = React.useMemo(() => previousTrips, [previousTrips]);
   const finalCol = React.useMemo(() => columnDef, []);
 
