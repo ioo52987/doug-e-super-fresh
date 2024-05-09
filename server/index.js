@@ -23,14 +23,15 @@ app.listen(PORT, () => {
 });
 
 // connect to db
-const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
-
+//const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
+/*
 let db = mysql.createConnection(urlDB);
 
 db.connect((err) => {
   if (err) throw err;
   console.log(`mysql connected on port ${process.env.MYSQLPORT}`);
 });
+*/
 
 // NEW - Add CORS headers - see https://enable-cors.org/server_expressjs.html
 app.use(function (req, res, next) {
@@ -40,6 +41,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+/*
 // endpoints
 app.get("/states", (req, res) => {
   let sqlGet = "SELECT abbr FROM states";
@@ -86,3 +88,4 @@ app.post("/registeredLabs", (req, res) => {
     });
   });
 });
+*/
