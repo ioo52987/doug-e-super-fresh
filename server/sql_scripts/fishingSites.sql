@@ -1,6 +1,5 @@
 DROP TABLE fish.fishingSites;
 
-
 CREATE TABLE fish.fishingSites (
     pk int NOT NULL AUTO_INCREMENT,
     siteName nvarchar(128) NOT NULL,
@@ -8,11 +7,10 @@ CREATE TABLE fish.fishingSites (
     longitude DECIMAL(13,10) NOT NULL,
     latitude DECIMAL(13,10) NOT NULL,
     siteURL nvarchar(128),
-    descrb nvarchar(1000) NOT NULL,
+    descrb nvarchar(1500) NOT NULL,
     showInDropdown int(1) NOT NULL,
     PRIMARY KEY (pk)
 );
-
 
 INSERT INTO fish.fishingSites(siteName,siteType,longitude,latitude,siteURL,descrb,showInDropdown) 
 VALUES 
@@ -31,5 +29,3 @@ VALUES
     ("Green Mile Fishing Pier (King-Lincoln Park)","tidal",-76.4110675,36.9657697,"https://mrc.virginia.gov/vsrfdf/nnwavescreen.shtm","The concrete fishing area is approximately 1600 feet long and 8 feet wide. The side of the pier designated for fishing has periodic cut-outs (3 1/2 ft. in height) to provide easier access for handicapped anglers and children. The railing toward the small boat harbor is 5 feet high to discourage people from fishing in that direction. There is no fee to fish off of the pier, but you must purchase your own individual saltwater license (unless exempt by age). The pier is open to the public from 7 a.m. until 10 p.m. Lighting is provided for the evening hours. Water depth ranges from 13 to 17 feet as you move towards the end of the fishing pier area. This pier should provide access to a variety of species such as croaker, spot, flounder, striped bass, and gray trout.",1);
 
 select * from fish.fishingSites;
-
-

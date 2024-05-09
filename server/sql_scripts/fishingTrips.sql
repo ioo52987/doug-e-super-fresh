@@ -1,11 +1,10 @@
 DROP TABLE fish.fishingTrips;
 
-
 CREATE TABLE fish.fishingTrips (
     pk int NOT NULL AUTO_INCREMENT,
     date nvarchar(128) NOT NULL,
     siteName nvarchar(128) NOT NULL,
-    descrb nvarchar(1000) NOT NULL,
+    descrb nvarchar(1500) NOT NULL,
     rating int(1) NOT NULL,
     url nvarchar(128),
     fishCaught int(100) NOT NULL,

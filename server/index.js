@@ -40,6 +40,17 @@ app.use(function (req, res, next) {
 });
 
 // endpoints
+app.post("/fishingTrips", (req, res) => {
+  let data = req.body;
+  let sqlPost = `INSERT INTO fishingTrips (date,siteName,descrb,rating,url,fishCaught,tideType)  
+      VALUES ("${data.date}", "${data.siteName}", "${data.descrb}","${data.rating}","${data.url}", "${data.fishCaught}", "${data.tideType}")`;
+  db.query(sqlPost, (error, result) => {
+    if (error) return res.json(error);
+    res.send({
+      message: "New fishing trip added.",
+    });
+  });
+});
 
 app.get("/getFishingSites", (req, res) => {
   let sqlGet = "SELECT siteName FROM fishingSites WHERE showInDropdown = 1";
