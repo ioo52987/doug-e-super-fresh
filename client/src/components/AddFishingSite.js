@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import FormErrors from "./FormErrors.js";
 import Select from "react-select";
 
@@ -110,28 +109,38 @@ function AddFishingSite() {
     //formValid = false;
 
     if (formValid) {
-      axios
-        .post(`/` + process.env.REACT_APP_FISHING_SITES_AIRTABLE + `/`, {
-          fields: {
-            siteName: document.getElementById("siteName").value,
-            siteType: siteTypeSelectedOption.value,
-            longitude: Number(document.getElementById("longitude").value),
-            latitude: Number(document.getElementById("latitude").value),
-            description: document.getElementById("description").value,
-            siteURL: document.getElementById("url").value,
-          },
-        })
+      fetch(`http://localhost:${process.env.REACT_APP_PORT}/addFishingSite`, {
+        method: "POST",
+        mode: `cors`,
+        body: JSON.stringify({
+          siteName: document.getElementById("siteName").value,
+          siteType: siteTypeSelectedOption.value,
+          longitude: Number(document.getElementById("longitude").value),
+          latitude: Number(document.getElementById("latitude").value),
+          descrb: document.getElementById("description").value,
+          siteURL: document.getElementById("url").value,
+          showInD: 1, // always set to true. Can only be set to false manually in db
+        }),
+        headers: {
+          "Access-Control-Request-Method": "POST",
+          "Access-Control-Request-Headers": "Content-Type, Accept",
+          Origin: "*",
+          "Content-Type": "application/json",
+        },
+      })
         .then((resp) => {
-          console.log("success!!");
           setFormValid(true);
+          /*
           const delay = 5000; // in milliseconds
           setTimeout(() => {
             window.location.reload(true);
-          }, delay);
+          }, delay);*/
+          return resp.json();
         })
-        .catch(function (error) {
-          console.log(error);
-        });
+        .then(function (data) {
+          console.log(data);
+        })
+        .catch((error) => console.error("Error:", error));
     }
   };
 
