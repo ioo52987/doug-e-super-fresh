@@ -44,45 +44,36 @@ function AddFishingTrip() {
   let [formState, setFormState] = useState();
 
   // GET fishingSite names for dropdown field
-  let [offset, setOffset] = useState("");
   useEffect(() => {
-    axios
-      .get(
-        `/` + process.env.REACT_APP_FISHING_SITES_AIRTABLE + `?offset=${offset}`
-      )
-      .then((response) => {
-        let data = response.data.records;
-        setFishingSiteData((fishingSiteData) => [...fishingSiteData, ...data]);
-        if (response.data.offset) {
-          setOffset(response.data.offset);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [offset]);
+    async function fetchMyAPI() {
+      let response = await fetch(
+        `${process.env.REACT_APP_API_SERVER_URL}/getFishingSites`
+      );
+      response = await response.json();
+      setFishingSiteData(response);
+    }
+    fetchMyAPI();
+  }, []);
 
-  // filter and alphabetize dropdown fishing-sites
+  // alphabetize siteNames and populate dropdown
   useEffect(() => {
-    // remove unwanted sites (designated as 'false' in the db) from appearing in the dropdown
-    let pN = [];
-    fishingSiteData.forEach((i) => {
-      if (!i.fields.showInDropdown) {
-        pN.push(i.fields.siteName);
-      }
-    });
-    // alphabetize siteNames
-    let sorted_dropdown = pN.sort();
+    let arr = [];
+    for (let i = 0; i < fishingSiteData.length; i++) {
+      arr.push(fishingSiteData[i].siteName);
+    }
+    arr.sort();
 
     // create obj for react-select
     let selectOptions = [];
-    sorted_dropdown.forEach((i) => {
+    arr.forEach((i) => {
       let obj = { value: i, label: i };
       selectOptions.push(obj);
     });
 
     setDropdownValues(selectOptions);
   }, [fishingSiteData]);
+
+  
 
   // form validation
   const validateField = (fieldName, value) => {
@@ -131,7 +122,6 @@ function AddFishingTrip() {
 
   // on form submission...
   const handleSubmit = (event) => {
-
     event.preventDefault();
     formState =
       fieldValuesValid.date &&
@@ -163,7 +153,7 @@ function AddFishingTrip() {
         .then((resp) => {
           console.log("POST success!");
           setFormState(true);
-         const delay = 5000; // milliseconds
+          const delay = 5000; // milliseconds
           setTimeout(() => {
             window.location.reload(true);
           }, delay);
