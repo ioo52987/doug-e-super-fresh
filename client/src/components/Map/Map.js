@@ -6,7 +6,7 @@ import marker from "@mapbox/maki/icons/marker.svg";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZmlzaG5uMjMiLCJhIjoiY2xpb3o4YjlhMHFjYjNkcDJiejE2aHJzYiJ9.wUWSN1ZUhOzAMpGArWidUQ";
 
-export default function MapDos() {
+export default function Map() {
   // check if on mobile or computer device --> https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 

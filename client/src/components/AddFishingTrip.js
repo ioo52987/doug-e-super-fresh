@@ -73,8 +73,6 @@ function AddFishingTrip() {
     setDropdownValues(selectOptions);
   }, [fishingSiteData]);
 
-  
-
   // form validation
   const validateField = (fieldName, value) => {
     switch (fieldName) {
@@ -138,30 +136,38 @@ function AddFishingTrip() {
 
     if (formState) {
       // POST new fishingTrip data
-      axios
-        .post(`/` + process.env.REACT_APP_FISHING_TRIPS_AIRTABLE + `/`, {
-          fields: {
-            date: fieldValues.date,
-            siteName: siteSelectedOption.value,
-            tideType: tideSelectedOption.value,
-            fishCaught: Number(fieldValues.fishCaught),
-            rating: fieldValues.rating,
-            description: fieldValues.description,
-            url: fieldValues.url,
-          },
-        })
+      fetch(`http://localhost:${process.env.REACT_APP_PORT}/fishingTrips`, {
+        method: "POST",
+        mode: `cors`,
+        body: JSON.stringify({
+          date: fieldValues.date,
+          siteName: siteSelectedOption.value,
+          tideType: tideSelectedOption.value,
+          fishCaught: Number(fieldValues.fishCaught),
+          rating: fieldValues.rating,
+          descrb: fieldValues.description,
+          url: fieldValues.url,
+        }),
+        headers: {
+          "Access-Control-Request-Method": "POST",
+          "Access-Control-Request-Headers": "Content-Type, Accept",
+          Origin: "*",
+          "Content-Type": "application/json",
+        },
+      })
         .then((resp) => {
-          console.log("POST success!");
-          setFormState(true);
-          const delay = 5000; // milliseconds
-          setTimeout(() => {
-            window.location.reload(true);
-          }, delay);
+          //setFormValid(true);
+          /*
+        const delay = 5000; // in milliseconds
+        setTimeout(() => {
+          window.location.reload(true);
+        }, delay);*/
+          return resp.json();
         })
-        .catch(function (error) {
-          console.log(error);
-          setFormState(false);
-        });
+        .then(function (data) {
+          console.log(data);
+        })
+        .catch((error) => console.error("Error:", error));
     }
   };
 

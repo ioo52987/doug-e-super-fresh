@@ -7,3 +7,8 @@
 - VIMS resources - https://dwr.virginia.gov/wildlife/fish/
 - 5 page - fish species in the area and NOAA API 
             - https://www.eregulations.com/virginia/fishing/fish-identification
+
+
+-----------------------------------------------------------------------------------------------
+Mobile Design, Success and auto-refresh, Map Component, hooking up on Railway
+-----------------------------------------------------------------------------------------------
