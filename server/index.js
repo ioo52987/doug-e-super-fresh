@@ -23,15 +23,14 @@ app.listen(PORT, () => {
 });
 
 // connect to db
-//const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
-/*
+const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
+
 let db = mysql.createConnection(urlDB);
 
 db.connect((err) => {
   if (err) throw err;
   console.log(`mysql connected on port ${process.env.MYSQLPORT}`);
 });
-*/
 
 // NEW - Add CORS headers - see https://enable-cors.org/server_expressjs.html
 app.use(function (req, res, next) {
@@ -75,17 +74,16 @@ app.get("/registeredLabs", (req, res) => {
     return res.json(result);
   });
 });
+*/
 
-app.post("/registeredLabs", (req, res) => {
+app.post("/addFishingSite", (req, res) => {
   let data = req.body;
-  let sqlPost = `INSERT INTO registeredLabs 
-    (lab_name, street_address, city, state_abbr, zipcode, accreditation, clia_number, panels, website, email, phone_no) 
-    VALUES ("${data.lab_name}", "${data.street_address}", "${data.city}","${data.state}","${data.zipcode}", "${data.accreditation}", "${data.clia_number}", '${data.panels}',"${data.website}","${data.email}","${data.phone_no}")`;
+  let sqlPost = `INSERT INTO fishingSites (siteName,siteType,longitude,latitude,siteURL,descrb,showInDropdown) 
+    VALUES ("${data.siteName}", "${data.siteType}", "${data.longitude}","${data.latitude}","${data.siteURL}", "${data.desrb}", "${data.showInD}")`;
   db.query(sqlPost, (error, result) => {
     if (error) return res.json(error);
     res.send({
-      message: "New lab was registered.",
+      message: "New fishing site added.",
     });
   });
 });
-*/
