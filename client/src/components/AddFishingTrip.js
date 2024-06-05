@@ -40,7 +40,7 @@ function AddFishingTrip() {
     url: "",
   });
   /* FORM VALID? STATE */
-  let [formState, setFormState] = useState();
+  let [formState, setFormState] = useState(false);
 
   // GET fishingSite names for dropdown field
   useEffect(() => {
@@ -120,6 +120,7 @@ function AddFishingTrip() {
   // on form submission...
   const handleSubmit = (event) => {
     event.preventDefault();
+
     formState =
       fieldValuesValid.date &&
       fieldValuesValid.siteName &&
@@ -128,9 +129,10 @@ function AddFishingTrip() {
       fieldValuesValid.description &&
       fieldValuesValid.url;
 
-    //console.log(fieldValues);
-    //console.log(fieldValuesValid);
-    //console.log(formState);
+    console.log(fieldValues);
+    console.log(fieldValuesValid);
+    console.log(formState);
+
     //formState = false;
 
     if (formState) {
@@ -156,11 +158,10 @@ function AddFishingTrip() {
       })
         .then((resp) => {
           //setFormValid(true);
-          /*
-        const delay = 5000; // in milliseconds
-        setTimeout(() => {
-          window.location.reload(true);
-        }, delay);*/
+          const delay = 5000; // in milliseconds
+          setTimeout(() => {
+            window.location.reload(true);
+          }, delay);
           return resp.json();
         })
         .then(function (data) {
@@ -241,7 +242,7 @@ function AddFishingTrip() {
               </div>
             </div>
             <div className="w-full md:w-1/3"></div>
-            <div className="w-full md:w-1/4 md:px-3 pt-2">
+            <div className="w-full md:w-1/4 md:px-2 pt-2">
               <label>Rating</label>
               <div id="rating" style={{ zIndex: 0 }}>
                 <RatingButton fieldValues={fieldValues} />
@@ -364,7 +365,7 @@ function AddFishingTrip() {
             </div>
             <div className="w-full md:w-1/3 md:px-3 pt-2">
               {formState ? (
-                <div>"Success! Thanks for submitting a trip!"</div>
+                <div>Success! Thanks for submitting a trip!</div>
               ) : null}
             </div>
           </div>
