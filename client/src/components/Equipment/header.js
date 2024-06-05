@@ -15,7 +15,7 @@ export default function Header(props) {
           (!rootPage
             ? " shadow-[0px_2px_2px_0px_rgba(0,_0,_0,_0.10)]"
             : " py-5 md:py-5") +
-          " font-['Montserrat'] sticky top-0"
+          " font-['Montserrat'] sticky top-0 z-20"
         }
       >
         <div
