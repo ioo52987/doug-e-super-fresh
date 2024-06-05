@@ -117,7 +117,7 @@ function RatingButton({ fieldValues }) {
             className={
                 activeButtons.active3
                   ? "bg-purple-300 rounded pt-2 pb-2 pr-3 pl-3 md:pr-4 md:pl-4 m-0.5"
-                  : "bg-gray-200 rounded pr-4 pt-2 pb-2 pr-3 pl-3 md:pr-4 md:pl-4 m-0.5"
+                  : "bg-gray-200 rounded pt-2 pb-2 pr-3 pl-3 md:pr-4 md:pl-4 m-0.5"
               }
             id="3"
             onClick={handleClickActivation}
