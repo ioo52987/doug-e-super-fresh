@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url(./fonts/Montserrat/Montserrat-VariableFont_wght.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Reggae';
+  src: local('Reggae'), url(./fonts/Reggae/ReggaeOne-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'ArchitectsDaughter';
+  src: local('ArchitectsDaughter'), url(./fonts/ArchitectsDaughter/ArchitectsDaughter-Regular.ttf) format('truetype');
+}
+
+/* mapbox styling */
+.map-container {
+  width: 100vw;
+  height: 100vh;
+}
