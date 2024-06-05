@@ -110,7 +110,7 @@ function AboutThisSite() {
           <i>Programmers! Want to Contribute?</i>
         </div>
         <div className="w-full md:w-1/2 pt-5 pl-10">
-          <i className="fa fa-github-alt"></i>&nbsp;&nbsp;&nbsp;Please take a
+          <i className="fa fa-github-alt"></i>&nbsp;&nbsp;&nbsp;Take a
           look at the public gitHub repository&nbsp;
           <a
             href="https://github.com/ioo52987/doug-e-fish"
