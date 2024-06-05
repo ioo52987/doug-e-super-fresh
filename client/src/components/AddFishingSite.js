@@ -1,8 +1,10 @@
 import { useState } from "react";
 import FormErrors from "./Equipment/FormErrors.js";
 import Select from "react-select";
+import { useNavigate } from "react-router-dom";
 
 function AddFishingSite() {
+  let navigate = useNavigate();
   /* FIELD VALUES */
   let [fieldValues, setFieldValues] = useState({
     siteName: "",
@@ -130,11 +132,11 @@ function AddFishingSite() {
       })
         .then((resp) => {
           setFormValid(true);
-          /*
           const delay = 5000; // in milliseconds
           setTimeout(() => {
-            window.location.reload(true);
-          }, delay);*/
+            //window.location.reload(true);
+            navigate(`/map`);
+          }, delay);
           return resp.json();
         })
         .then(function (data) {
