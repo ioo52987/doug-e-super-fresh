@@ -12,15 +12,28 @@ import { columnDef } from "./columns.js";
 import "./table.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-function PreviousTrips() {
+export default function PreviousTrips() {
+
+ // get 'sample' list from the api
+ const [samples, setSamples] = useState([]);
+ useEffect(() => {
+   async function fetchMyAPI() {
+     let response = await fetch(`${process.env.REACT_APP_SERVER_URL}/samples`);
+     response = await response.json();
+     setSamples(response);
+   }
+
+   fetchMyAPI();
+ }, []);
+
+
   // GET previousTrips
   let [previousTrips, setPreviousTrips] = useState([]);
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await fetch(
-        `${process.env.REACT_APP_API_SERVER_URL}/fishingTrips`
-      );
+      let response = await fetch(`${process.env.REACT_APP_API_SERVER_URL}/fishingTrips`);
       response = await response.json();
+      console.log(response);
       setPreviousTrips(response);
     }
 
@@ -169,5 +182,3 @@ function PreviousTrips() {
     </div>
   );
 }
-
-export default PreviousTrips;

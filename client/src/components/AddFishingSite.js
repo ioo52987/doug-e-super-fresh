@@ -111,7 +111,7 @@ function AddFishingSite() {
     //formValid = false;
 
     if (formValid) {
-      fetch(`http://localhost:${process.env.REACT_APP_PORT}/fishingSites`, {
+      fetch(`${process.env.REACT_APP_API_SERVER_URL}/fishingSites`, {
         method: "POST",
         mode: `cors`,
         body: JSON.stringify({

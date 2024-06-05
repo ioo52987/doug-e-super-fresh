@@ -137,7 +137,7 @@ function AddFishingTrip() {
 
     if (formState) {
       // POST new fishingTrip data
-      fetch(`http://localhost:${process.env.REACT_APP_PORT}/fishingTrips`, {
+      fetch(`${process.env.REACT_APP_API_SERVER_URL}/fishingTrips`, {
         method: "POST",
         mode: `cors`,
         body: JSON.stringify({
