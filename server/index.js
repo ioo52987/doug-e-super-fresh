@@ -73,7 +73,7 @@ app.get("/fishingSites", (req, res) => {
 app.post("/fishingSites", (req, res) => {
   let data = req.body;
   let sqlPost = `INSERT INTO fishingSites (siteName,siteType,longitude,latitude,siteURL,descrb,showInDropdown) 
-    VALUES ("${data.siteName}", "${data.siteType}", "${data.longitude}","${data.latitude}","${data.siteURL}", "${data.desrb}", "${data.showInD}")`;
+    VALUES ("${data.siteName}", "${data.siteType}", "${data.longitude}","${data.latitude}","${data.siteURL}", "${data.descrb}", "${data.showInD}")`;
   db.query(sqlPost, (error, result) => {
     if (error) return res.json(error);
     res.send({
