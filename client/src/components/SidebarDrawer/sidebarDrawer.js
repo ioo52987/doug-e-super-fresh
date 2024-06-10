@@ -5,7 +5,7 @@ import {
   SparklesIcon,
   MapIcon,
   MapPinIcon,
-} from "@heroicons/react/24/outline";
+} from "@heroicons/react/24/solid";
 import { Link, useLocation } from "react-router-dom";
 import "./picPlacement.css";
 
@@ -14,6 +14,7 @@ export default function SidebarDrawer(props) {
 
   return (
     <>
+      <div className="fixed w-screen h-screen bg-black opacity-70 z-30"></div>
       <div className="fixed top-0 left-0 z-40 bg-white overflow-y-auto h-screen w-full md:w-64 ">
         <button
           type="button"
@@ -61,7 +62,7 @@ export default function SidebarDrawer(props) {
           {/* map */}
           <li onClick={() => props.setNT()}>
             <Link
-              to="/map"
+              to="/"
               className="relative flex flex-row items-center h-10 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-orange-500 pr-6"
             >
               <span className="inline-flex justify-center items-center ml-8">

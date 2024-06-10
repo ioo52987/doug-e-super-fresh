@@ -4,7 +4,6 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Equipment/header.js";
 import SidebarDrawer from "./components/SidebarDrawer/sidebarDrawer.js";
-import Welcome from "./components/WelcomePage.js";
 import Map from "./components/Map/Map.js"
 import AboutThisSite from "./components/AboutThisSite.js";
 import AddNewSite from "./components/AddFishingSite.js";
@@ -22,8 +21,7 @@ function App() {
       {navToggle && <SidebarDrawer setNT={setNT} />}
 
       <Routes>
-        <Route exact path="/" element={<Welcome />} />
-        <Route exact path="/map" element={<Map />} />
+        <Route exact path="/" element={<Map />} />
         <Route exact path="/about" element={<AboutThisSite />} />
         <Route exact path="/inputNewSite" element={<AddNewSite />} />
         <Route exact path="/inputNewTrip" element={<AddNewTrip />} />

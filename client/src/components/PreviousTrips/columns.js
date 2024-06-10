@@ -19,7 +19,7 @@ export const columnDef = [
   },
   {
     accessorKey: "fishCaught",
-    header: "Fish Caught",
+    header: "Fish#",
   },
   {
     accessorKey: "tideType",

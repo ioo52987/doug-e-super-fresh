@@ -29,7 +29,7 @@ export default function welcome() {
         </div>
       </div>
       <div id="hero-subtext">
-        <div className="flex items-center justify-center mt-10">
+        <div className="flex items-center justify-center mt-20">
           <div className="text-lg md:text-xl text-black mb-4">
             One Website,&nbsp;
           </div>
@@ -37,10 +37,11 @@ export default function welcome() {
             All the Fish
           </div>
         </div>
-        <div className="flex flex-col items-center text-black text-sm md:text-base font-normal">
-          <div className="mt-5 md:mt-8">Made for tracking</div>
+        {/*
+        <div className="flex items-center justify-center text-black text-sm md:text-base font-normal mt-5 md:mt-8">
+          <div className="">Made for tracking,&nbsp;</div>
           <div className="text-mexican-orange font-bold">Good Times!</div>
-        </div>
+        </div> */}
       </div>
     </>
   );
