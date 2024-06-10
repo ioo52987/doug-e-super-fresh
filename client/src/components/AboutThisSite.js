@@ -18,33 +18,41 @@ function AboutThisSite() {
               be easy, efficient, friendly, fun, and intuitive. There will NEVER
               be ads. It should and will be always free for everyone to use!
               <br></br>
-              <br>
-              </br><i>Enjoy! &nbsp;&nbsp;Property is theft!</i>
+              <br></br>
+              <i>Enjoy! &nbsp;&nbsp;Property is theft!</i>
               <br></br>
               <br></br>
-              <EnvelopeIcon className="h-6 w-6" />
-              &nbsp;&nbsp;&nbsp;If you have an suggestions for making this a
-              more effective or fun tool please shoot us a message at{" "}
-              <i className="text-mexican-orange font-bold">
-                &nbsp;doug.e.fishNN@gmail.com
-              </i>
-              .<br></br>
+              <div className="flex flex-row">
+                <div className="mr-3">
+                  <EnvelopeIcon className="h-6 w-6" />
+                </div>
+                <div>
+                  If you have an suggestions for making this a more effective or
+                  fun tool please shoot us a message at{" "}
+                  <i className="text-mexican-orange font-bold">
+                    &nbsp;doug.e.fishNN@gmail.com
+                  </i>
+                </div>
+              </div>
               <br></br>
+              <div className="flex flex-row">
+                <div className="mr-3">
+                  <CodeBracketIcon className="h-6 w-6" />
+                </div>
+                <div>
+                Take a look at the public gitHub repository&nbsp;
+                <a
+                  href="https://github.com/ioo52987/doug-e-super-fresh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-mexican-orange font-bold"
+                >
+                  here
+                </a>
+                .<i> v{process.env.REACT_APP_VERSION}</i>
+              </div>
+              </div>
             </div>
-          </div>
-
-          <div className="w-full md:w-1/2 md:px-3">
-            <CodeBracketIcon className="h-6 w-6"/>Take a look at
-            the public gitHub repository&nbsp;
-            <a
-              href="https://github.com/ioo52987/doug-e-super-fresh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-mexican-orange font-bold"
-            >
-              here
-            </a>
-            .<i> v{process.env.REACT_APP_VERSION}</i>
           </div>
         </div>
       </div>
