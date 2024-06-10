@@ -42,7 +42,7 @@ app.use(function (req, res, next) {
 // endpoints
 app.get("/fishingTrips", (req, res) => {
   let sqlGet =
-    "SELECT pk, date, siteName, descrb, rating, url, fishCaught, tideType FROM fishingTrips";
+    "SELECT pk, date, siteName, descrb, rating, url, fishCaught, tideType FROM fishingTrips ORDER BY pk DESC";
   db.query(sqlGet, (error, result) => {
     if (error) return res.json(error);
     return res.json(result);
