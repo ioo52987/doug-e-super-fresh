@@ -175,12 +175,16 @@ export default function Map() {
 
         let content = ` <div id='top'>
                 <b id='title'>${siteName}</b><br>
-                Overall Rating: <div 
-                    style="display: inline; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;">
-                    ${overallRating}</div></br>
+                
             </div>
             <p id='bottom'>${description}</p>
         `;
+
+        /*
+Overall Rating: <div 
+                    style="display: inline; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;">
+                    ${overallRating}</div></br>
+                    */
 
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears over the copy being pointed to.
