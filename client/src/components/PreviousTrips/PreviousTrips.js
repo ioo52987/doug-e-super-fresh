@@ -13,25 +13,25 @@ import "./table.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export default function PreviousTrips() {
+  // get 'sample' list from the api
+  const [samples, setSamples] = useState([]);
+  useEffect(() => {
+    async function fetchMyAPI() {
+      let response = await fetch(`${process.env.REACT_APP_SERVER_URL}/samples`);
+      response = await response.json();
+      setSamples(response);
+    }
 
- // get 'sample' list from the api
- const [samples, setSamples] = useState([]);
- useEffect(() => {
-   async function fetchMyAPI() {
-     let response = await fetch(`${process.env.REACT_APP_SERVER_URL}/samples`);
-     response = await response.json();
-     setSamples(response);
-   }
-
-   fetchMyAPI();
- }, []);
-
+    fetchMyAPI();
+  }, []);
 
   // GET previousTrips
   let [previousTrips, setPreviousTrips] = useState([]);
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await fetch(`${process.env.REACT_APP_API_SERVER_URL}/fishingTrips`);
+      let response = await fetch(
+        `${process.env.REACT_APP_API_SERVER_URL}/fishingTrips`
+      );
       response = await response.json();
       console.log(response);
       setPreviousTrips(response);
@@ -81,59 +81,61 @@ export default function PreviousTrips() {
             />
           </span>
         </div>
-        <table>
-          <thead>
-            {tableInstance.getHeaderGroups().map((headerEl) => {
-              return (
-                <tr key={headerEl.id}>
-                  {
-                    // header
-                    headerEl.headers.map((columnEl) => {
-                      return (
-                        <th
-                          key={columnEl.id}
-                          colSpan={columnEl.colSpan}
-                          onClick={columnEl.column.getToggleSortingHandler()}
-                          className="pt-3 pb-3 pr-3 bg-orange-500 text-white"
-                        >
-                          <div className="flex flex-row items-center justify-center">
-                            <span className="ml-2">
-                              {flexRender(
-                                columnEl.column.columnDef.header,
-                                columnEl.getContext()
-                              )}
-                            </span>
-                          </div>
-                        </th>
-                      );
-                    })
-                  }
-                </tr>
-              );
-            })}
-          </thead>
-          <tbody>
-            {tableInstance.getRowModel().rows.map((rowEl) => {
-              return (
-                <tr key={rowEl.id}>
-                  {
-                    // data
-                    rowEl.getVisibleCells().map((cellEl) => {
-                      return (
-                        <td key={cellEl.id} className="text-center pt-1 pb-1">
-                          {flexRender(
-                            cellEl.column.columnDef.cell,
-                            cellEl.getContext()
-                          )}
-                        </td>
-                      );
-                    })
-                  }
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div style={{ maxWidth: "100%", overflowX: "auto" }}>
+          <table>
+            <thead>
+              {tableInstance.getHeaderGroups().map((headerEl) => {
+                return (
+                  <tr key={headerEl.id}>
+                    {
+                      // header
+                      headerEl.headers.map((columnEl) => {
+                        return (
+                          <th
+                            key={columnEl.id}
+                            colSpan={columnEl.colSpan}
+                            onClick={columnEl.column.getToggleSortingHandler()}
+                            className="pt-3 pb-3 pr-3 bg-orange-500 text-white"
+                          >
+                            <div className="flex flex-row items-center justify-center">
+                              <span className="ml-2">
+                                {flexRender(
+                                  columnEl.column.columnDef.header,
+                                  columnEl.getContext()
+                                )}
+                              </span>
+                            </div>
+                          </th>
+                        );
+                      })
+                    }
+                  </tr>
+                );
+              })}
+            </thead>
+            <tbody>
+              {tableInstance.getRowModel().rows.map((rowEl) => {
+                return (
+                  <tr key={rowEl.id}>
+                    {
+                      // data
+                      rowEl.getVisibleCells().map((cellEl) => {
+                        return (
+                          <td key={cellEl.id} className="text-center pt-1 pb-1">
+                            {flexRender(
+                              cellEl.column.columnDef.cell,
+                              cellEl.getContext()
+                            )}
+                          </td>
+                        );
+                      })
+                    }
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
         <div className="flex flex-row mt-4 align-right">
           <button
             type="button"
