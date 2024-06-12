@@ -1,6 +1,36 @@
-.fish-site-popup .mapboxgl-popup-content {
-    background-color: #fbfbfb;
+.mapboxgl-popup {
+    font-family: 'Architects Daughter', cursive;
 }
-.fish-site-popup .mapboxgl-popup-content p{
-    background-color: #e3e5ed;
+
+/* fish-site popup formatting*/
+.fish-site-popup .mapboxgl-popup-content {
+    width: 450px;
+    background-color: #fbfbfb;
+    padding: 12px;
+}
+
+.fish-site-popup .mapboxgl-popup-content #top {
+    margin-left: 5px;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.fish-site-popup .mapboxgl-popup-content #title {
+    font-size: 18px;
+}
+
+.fish-site-popup .mapboxgl-popup-content #bottom {
+    background-color: #e5e7eb;
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.fish-site-popup .mapboxgl-popup-content a {
+    outline: none;
+    text-decoration: none;
 }

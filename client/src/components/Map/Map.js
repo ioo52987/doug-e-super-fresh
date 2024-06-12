@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import marker from "@mapbox/maki/icons/marker.svg";
+import './Map.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
@@ -175,7 +176,6 @@ export default function Map() {
 
         let content = ` <div id='top'>
                 <b id='title'>${siteName}</b><br>
-                
             </div>
             <p id='bottom'>${description}</p>
         `;
