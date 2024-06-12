@@ -46,7 +46,7 @@ function AddFishingTrip() {
   useEffect(() => {
     async function fetchMyAPI() {
       let response = await fetch(
-        `${process.env.REACT_APP_API_SERVER_URL}/fishingSites`
+        `${process.env.REACT_APP_API_SERVER_URL}/fishingSitesForDropdown`
       );
       response = await response.json();
       setFishingSiteData(response);
