@@ -21,6 +21,11 @@ body {
   src: local('ArchitectsDaughter'), url(./fonts/ArchitectsDaughter/ArchitectsDaughter-Regular.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url(./fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+}
+
 /* mapbox styling */
 .map-container {
   width: 100vw;
