@@ -61,9 +61,18 @@ app.post("/fishingTrips", (req, res) => {
   });
 });
 
-app.get("/fishingSites", (req, res) => {
+app.get("/fishingSitesForDropdown", (req, res) => {
   let sqlGet =
     "SELECT siteName, siteType, longitude, latitude, siteURL, descrb, showInDropdown FROM fishingSites WHERE showInDropdown = 1";
+  db.query(sqlGet, (error, result) => {
+    if (error) return res.json(error);
+    return res.json(result);
+  });
+});
+
+app.get("/fishingSites", (req, res) => {
+  let sqlGet =
+    "SELECT siteName, siteType, longitude, latitude, siteURL, descrb, showInDropdown FROM fishingSites";
   db.query(sqlGet, (error, result) => {
     if (error) return res.json(error);
     return res.json(result);
